@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostr Game Engine</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Nostr Game Engine" />
+    <link rel="manifest" href="/site.webmanifest" />
+</head>
+
+<body>
+    <section class="hero">
+        <hr>
+        <h1 translate="no">Nostr Game<br>Engine</h1>
+        <hr>
+
+        <div class="content">
+            <article>
+
+                <p>
+                    NGE will be a royalty free, open-source game engine that is designed to be decentralized from the
+                    ground
+                    up and
+                    built on top of a robust open-source foundation,
+                    with a focus on using Bitcoin and Nostr to resolving real-world issues such as:
+                <ul>
+                    <li><b>Networking</b>: with serverless P2P via RTC over Nostr</li>
+                    <li><b>Monetization</b>: privacy-first immersive in-game ads & Bitcoin micro-payments</li>
+                    <li><b>Social</b>: interoperable profiles and chat</li>
+                    <li><b>Ownership</b>: decentralized distribution and DRM</li>
+                    <li><b>Matchmaking</b>: decentralized match-making over Nostr</li>
+                </ul>
+                <p>
+                    Every milestone delivers a fully functional platform, ensuring that even as our roadmap unfolds,
+                    developers can immediately build, launch, and evolve their projects.<br>
+                    Our phased transition maintains jME compatibility initially, then forks to enable deeper
+                    customization.
+                </p>
+            </article>
+            <sub>The roadmap contains some AI generated imagery as placeholders, as the roadmap progresses they will be
+                replaced with actual engine screenshots and videos.</sub>
+        </div>
+    </section>
+    <section class="hero">
+        <hr>
+        <h1>Get Started</h1>
+        <hr>
+
+        <div class="content">
+            <article>
+
+                                 <h2>coming soon...</h2>
+
+            </article>
+ 
+        </div>
+    </section>
+
+    <section>
+        <hr>
+        <h1>RoadMap</h1>
+        <hr>
+        <div class="timeline">
+            <div class="milestone tick">
+                <div class="content">
+                    <article>
+
+                        <h3>FOUNDATION</h3>
+                        <p>
+                            The project starts as a series of modules for the battle-tested <a target="_blank"
+                                href="https://jmonkeyengine.org">jMonkeyEngine</a>.
+                            <br>
+                            A JVM-based high performance, royalty-free, open-source modular game engine.
+                        </p>
+                        <img src="static/jme.webp" />
+                    </article>
+
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        a nostr client is implemented natively as an engine module
+                    </article>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        players can be authenticated via nostr keypair and remote signers
+                    </article>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        the network stack module is replaced with high-throughput, serverless, encrypted P2P using
+                        <b>RTC
+                            over
+                            Nostr signaling</b>, enabling easy development of decentralized games and apps
+                    </article>
+                    <sub>started at <a href="https://github.com/riccardobl/nostr-rtc"
+                            target="_blank">riccardobl/nostr-rtc</a></sub>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+                        <h3>v0.0.x NGE</h3>
+
+                        <p>
+                            At this stage, the engine supports P2P networking and essential Nostr functionalities,
+                            including
+                            player authentication, event signing, and relay subscription.
+                        </p>
+                        <p>
+                            The P2P network stack enables direct player-to-player connections, using Nostr solely as a
+                            coordinator, while actual traffic is P2P.
+                        </p>
+                        <p>
+                            Experienced devs can already build on top of this to create decentralized games and apps for
+                        <ul>
+                            <li>Windows</li>
+                            <li>Linux</li>
+                            <li>Android</li>
+                            <li>MacOS</li>
+                        </ul>
+                        using jvm based languages.
+                        </p>
+                        <img src="static/p2p.webp" />
+                    </article>
+
+
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        an in-game, immersive and privacy-preserving ads framework is implemented as
+                        an
+                        engine module
+                    </article>
+                    <sub>
+                        based on <a target="_blank"
+                            href="https://github.com/nostr-protocol/nips/pull/955">NOSTR-DAN draft nip </a>
+                    </sub>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        context-aware advertising support is achieved by enabling developers to create metadata areas
+                        within
+                        the
+                        virtual world of their games
+                    </article>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.1.x MONETIZATION</h3>
+
+                        <p>
+                            At this stage developers can monetize their games with p2p ads that do not break the
+                            player immersion or privacy.
+                        </p>
+                        <img src="static/ads.webp" />
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        webgl2 based renderer and browser support
+
+                    </article>
+                    <sub>started at <a href="https://github.com/riccardobl/webmonkeyengine"
+                            target="_blank">riccardobl/webmonkeyengine</a></sub>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        iOS release support
+                    </article>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.2.x EXPANDING</h3>
+                        <p>
+                            At this stage the engine can be used to deploy games and apps to a wider range of platforms:
+                        <ul>
+                            <li>Windows</li>
+                            <li>Linux</li>
+                            <li>Android</li>
+                            <li>MacOS</li>
+                            <li><b>Web Browsers</b></li>
+                            <li><b>iOS</b></li>
+                        </ul>
+                        </p>
+
+                    </article>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        gamer profile and achievements over nostr
+                    </article>
+                    <sub>
+                        <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/58.md">nip-58</a>
+                    </sub>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        match-making over nostr
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        player to player text-chat over nostr 
+                    </article>
+                    <sub>
+                        <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/17.md">nip-17</a>
+                    </sub>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        proximity and area text-chat over nostr 
+                    </article>
+                    <sub>
+                        <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/28.md">nip-28</a>
+                    </sub>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.3.x SOCIAL</h3>
+                        <p>
+                            At this stage the engine provides modules with the tools and abstractions to implement
+                            social features in games.
+                        </p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        high-level scripting language support module
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        sandboxed scripting language support for modding
+                    </article>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.4.x SCRIPTING</h3>
+                        <p>
+                            At this stage, the engine supports high-level scripting languages like LUA and JavaScript,
+                            enabling faster development.
+                        </p>
+                        <p>
+                            Even less experienced developers can create games and apps for
+                            supported platforms, while the sandboxed runtime also serves as a modding framework for
+                            games.
+                        </p>
+                        <img src="static/code.webp" />
+                    </article>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        programmable pipelines
+                    </article>
+
+                    <sub>started at <a target="_blank"
+                            href="https://github.com/riccardobl/jmonkeyengine/tree/pipeline">riccardobl/jmonkeyengine</a></sub>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        tiled deferred rendering
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        improved post processing stack
+                    </article>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.5.x SCHISM</h3>
+                        <p>
+                            At this stage the engine core is changed to use programmable pipelines, giving developers
+                            full
+                            control over the execution flow.
+                            This allows for custom optimized implementations tailored to demanding and complex games
+                            seen
+                            often
+                            in AAA titles.
+                        </p>
+                        <p>
+                            The primary rendering technique is switched to tiled based deferred rendering to improve
+                            performances with highly complex lightning and 4k+ rendering.
+                        </p>
+                        <p>
+                            To support the new architecture, the engine is separated from the jMonkeyEngine codebase and
+                            no
+                            longer maintains backward compatibility.
+                        </p>
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        internals overhaul and cleanup
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        high performance hardware accelerated ui framework
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        immersive audio technology
+                    </article>
+
+                    <sub>started at <a target="_blank" href="https://github.com/jmePhonon">jmePhonon</a></sub>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.6.x OVERHAUL</h3>
+                        <p>
+                            At this stage, more built-in features are added and the internals are improved to
+                            accommodate
+                            even
+                            higher-end games and apps.
+                        </p>
+                        <img src="static/improve.webp" />
+                    </article>
+                </div>
+            </div>
+
+
+
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        nostr based drm
+                    </article>
+                </div>
+            </div>
+
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        nostr based release management>
+                    </article>
+                    <sub>
+                        based on 
+                         <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/51.md#sets">nip-51 sets</a>
+                         and 
+                         <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/94.md">nip-94</a>
+                    </sub>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.7.x DISTRIBUTED DISTRIBUTION</h3>
+                        <p>
+                            At this stage games built with the engine can be fully distributed p2p over nostr markets
+                            with
+                            and licenses are managed by a nostr based digital rights management system.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        voxel engine module
+                    </article>
+
+                    <sub>based on <a target="_blank" href="https://github.com/rvandoosselaer/Blocks">rvandoosselaer/Blocks</a></sub>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        world paging module
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+                        nostr world persistency
+                    </article>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.8.x WORLDs</h3>
+                        <p>
+                            At this stage the engine is extended to support massive and voxel based world with optional
+                            nostr persistency (on supported relays).
+                        </p>
+                        <p>
+                            This will enable developers to implement common modern gaming mechanics without worrying
+                            about
+                            the
+                            underlying infrastructure.
+                        </p>
+                        <img src="static/cubes.webp" />
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        in-game bitcoin wallet
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        bitcoin micro-transactions
+                    </article>
+
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v0.9.x PAYMENTS</h3>
+                        <p>
+                            At this stage the engine provides capabilities to implement microtransactions and in-game
+                            payments
+                            using bitcoin.
+                            <br>
+                            <i>TBD: lightning? liquid? e-chash? ark?</i>
+                        </p>
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        frame generation and super resolution
+                    </article>
+                </div>
+            </div>
+            <div class="task">
+                <div class="content">
+                    <article>
+
+                        final touches
+                    </article>
+                </div>
+            </div>
+            <div class="milestone">
+                <div class="content">
+                    <article>
+
+                        <h3>v1.0.x NGE!</h3>
+                        <p>
+                            The engine is released as its first stable version.
+                        </p>
+                        <img src="static/bitcoin.webp" />
+                    </article>
+                </div>
+            </div>
+
+            <div class="task tbd"></div>
+            <div class="task tbd"></div>
+            <div class="task tbd"></div>
+            <div class="task tbd"></div>
+            <div class="milestone tbd">
+                <div class="content tbd">
+                    <article>
+
+                        <h3>v1.1.x TBD</h3>
+                        <ul>
+                            <li>Voice Chat with RTC nostr signaling</li>
+                            <li>Proximity Voice Chat with RTC nostr signaling</li>
+                            <li>Virtual Reality support</li>
+                            <li> Augmented Reality support</li>
+                            <li>AI capabilities are added on top of the engine to assist with content generation and
+                                player
+                                interaction.</li>
+                        </ul>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        © 2025 Nostr Game Engine
+    </footer>
+</body>
+
+</html>
