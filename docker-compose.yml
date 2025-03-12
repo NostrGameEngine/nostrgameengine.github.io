@@ -1,0 +1,176 @@
+x-healthcheck: &healthcheck
+  interval: 30s
+  timeout: 10s
+  retries: 10
+   
+x-fake-healthcheck: &fake-healthcheck
+  test: ["CMD", "true"]
+  interval: 30s
+  timeout: 10s
+  retries: 3
+
+
+services:
+  certbot:
+    image: certbot/dns-cloudflare
+    container_name: certbot-cf
+    volumes:
+      - "/srv/letsencrypt/etc:/etc/letsencrypt"
+      - "/srv/letsencrypt/log:/var/log/letsencrypt"
+      - "/srv/letsencrypt/lib:/var/lib/letsencrypt"
+      - "/srv/letsencrypt/cf.ini:/etc/cf.ini"
+    healthcheck:
+      test: ["CMD", "true"]
+      <<: *healthcheck    
+    entrypoint: >
+      sh -c "
+        while true; do
+          sleep 600
+        done
+      "
+    environment:
+      - SSL_DOMAINS=${SSL_DOMAINS}
+      - SSL_ROOT=${SSL_ROOT}
+      - TEAM_EMAIL_DEST=${TEAM_EMAIL_DEST}
+    restart: "no"
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.certbotmonthly.schedule: "@monthly"
+      ofelia.job-exec.certbotmonthly.command: >
+        sh -c "
+          certbot certonly
+            --dns-cloudflare
+            --dns-cloudflare-credentials /etc/letsencrypt/cf.ini
+            --dns-cloudflare-propagation-seconds 60
+            --non-interactive --expand --agree-tos -m $TEAM_EMAIL_DEST
+            -d "$SSL_DOMAINS" --cert-name $SSL_ROOT
+        "
+      ofelia.job-exec.certbotstartup.schedule: "@startup"  # Run the job immediately upon startup
+      ofelia.job-exec.certbotstartup.command: >
+        sh -c "
+          certonly
+            --dns-cloudflare
+            --dns-cloudflare-credentials /etc/letsencrypt/cf.ini
+            --dns-cloudflare-propagation-seconds 60
+            --non-interactive --expand --agree-tos -m $TEAM_EMAIL_DEST
+            -d "$SSL_DOMAINS" --cert-name $SSL_ROOT
+        "
+
+  gateway:
+    image: nginx:stable-alpine
+    container_name: gateway
+    volumes:
+      - /srv/letsencrypt/etc/archive/$SSL_ROOT:/etc/letsencrypt/archive/$SSL_ROOT:ro
+      - /srv/letsencrypt/etc/live/$SSL_ROOT:/etc/letsencrypt/live/certs:ro
+      - ./docker/nginx:/etc/nginx:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    healthcheck:
+      test: >
+        (curl -sS http://127.0.0.1:80/health | grep UP &&
+        curl -sS http://uptime.frk.wf/api/push/${GATEWAY_UPTIME_KEY}?status=up\&msg=OK) ||
+        (curl -sS http://uptime.frk.wf/api/push/${GATEWAY_UPTIME_KEY}?status=down\&msg=FAILED && exit 1)
+      <<: *healthcheck
+    restart: always
+    networks:
+      - gateway
+
+  nostr:
+    image: ghcr.io/hoytech/strfry:latest
+    container_name: nostr
+    restart: always
+    volumes:
+      - ./docker/nostr/strfry.conf:/etc/strfry.conf:ro
+      - /srv/nostr/data:/app/strfry-db
+    networks:
+      nostr:
+        aliases:
+          - nostr.docker
+      gateway:
+        aliases:
+          - nostr.docker
+    healthcheck:
+      test: ["CMD", "true"]
+      <<: *healthcheck    
+
+
+  
+  gateway-refresher:
+    image: ubuntu:latest
+    container_name: gateway-refresher
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "true"]
+      <<: *healthcheck
+    command: >
+      bash -c "
+        apt-get update -qq && \
+        apt-get install  -y ca-certificates curl &&\
+        install -m 0755 -d /etc/apt/keyrings &&\
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc &&\
+        chmod a+r /etc/apt/keyrings/docker.asc &&\
+        echo \"deb [arch=\$$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \$$(. /etc/os-release && echo \$${VERSION_CODENAME}) stable\" | tee /etc/apt/sources.list.d/docker.list > /dev/null && apt-get update -qq && \
+        apt-get update -qq && \
+        apt-get install -y -qq docker-ce-cli && \
+        while true; do
+          sleep 600
+        done
+      "
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.gatewayrefresh.schedule: "@every 1m"
+      ofelia.job-exec.gatewayrefresh.command: >
+        bash -c "
+          watched_containers=\$$(docker network inspect \"gateway\" --format '{{range .Containers}}{{.Name}} {{end}}') && \
+          for container in \$${watched_containers}; do
+            if [ \"\$${container}\" == \"gateway\" ]; then
+                continue
+            fi
+            state=\$$(docker inspect --format='{{.State.Restarting}}' \"\$${container}\" 2>/dev/null)
+            if [ \"\$${state}\" == \"true\" ]; then
+                echo \"Detected restart of \$${container}. Restarting gateway...\"
+                docker restart gateway
+            fi
+          done
+        "
+
+  website:
+    build:
+      context: .
+    container_name: homepage
+    restart: always
+    healthcheck:
+      test: ["CMD", "true"]
+      <<: *healthcheck
+    networks:
+      - gateway    
+
+  cron:
+    container_name: cron
+    image: mcuadros/ofelia:latest
+    restart: always
+    command: daemon --docker -f label=com.docker.compose.project=${COMPOSE_PROJECT_NAME}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # Restart ofelia as soon as new containers come online
+  # This is a workaround to ofelia not being able to reload the cron jobs at runtime
+  cron-live:
+    build:
+      context: ./docker/ofelia-live
+    container_name: cron-live
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro      
+    depends_on:
+      - cron
+
+networks:
+  gateway:
+    driver: bridge
+  nostr:
+    driver: bridge
+  

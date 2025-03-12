@@ -1,0 +1,278 @@
+   <section>
+        <x-title>RoadMap</x-title>
+        <div class="timeline">
+            
+            <x-milestone t="tick" title="FOUNDATION" img="imgs/jme.webp">
+                The project starts as a series of modules for the battle-tested <a target="_blank"
+                    href="https://jmonkeyengine.org">jMonkeyEngine</a>.
+                <br>
+                A JVM-based high performance, royalty-free, open-source modular game engine.
+            </x-milestone>
+
+            <x-task t="tick">
+                a nostr client is implemented natively as an engine module
+            </x-task>
+
+            <x-task t="tick">
+                players can be authenticated via nostr keypair and remote signers
+            </x-task>
+
+
+            <x-task  fact='started at <a href="https://github.com/riccardobl/nostr-rtc" target="_blank">riccardobl/nostr-rtc</a>'>
+                the network stack module is replaced with high-throughput, serverless, encrypted P2P using
+                <b>RTC over Nostr signaling</b>, enabling easy development of decentralized games and apps
+            </x-task>
+
+            <x-milestone  title="v0.0.x NGE" img="imgs/p2p.webp">
+                <p>
+                    At this stage, the engine supports P2P networking and essential Nostr functionalities,
+                    including
+                    player authentication, event signing, and relay subscription.
+                </p>
+                <p>
+                    The P2P network stack enables direct player-to-player connections, using Nostr solely as a
+                    coordinator, while actual traffic is P2P.
+                </p>
+                <p>
+                    Experienced devs can already build on top of this to create decentralized games and apps for
+                <ul>
+                    <li>Windows</li>
+                    <li>Linux</li>
+                    <li>Android</li>
+                    <li>MacOS</li>
+                </ul>
+                using jvm based languages.
+                </p>
+            </x-milestone>
+            
+            <x-task fact='based on <a target="_blank"
+                            href="https://github.com/nostr-protocol/nips/pull/955">NOSTR-DAN draft nip </a>'>
+                an in-game, immersive and privacy-preserving ads framework is implemented as
+                an engine module                
+             </x-task>
+
+            <x-task>
+                context-aware advertising support is achieved by enabling developers to create metadata areas
+                within the virtual world of their games 
+            </x-task>
+
+            <x-milestone title="v0.1.x MONETIZATION" img="imgs/ads.webp">
+                <p>
+                    At this stage developers can monetize their games with p2p ads that do not break the
+                    player immersion or privacy.
+                </p>
+            </x-milestone>
+
+            <x-task fact='started at <a href="https://github.com/riccardobl/webmonkeyengine"
+                            target="_blank">riccardobl/webmonkeyengine</a>'>
+                webgl2 based renderer and browser support                
+            </x-task>
+            <x-task>
+                iOS release support                  
+            </x-task>
+
+            <x-milestone title="v0.2.x EXPANDING">
+
+           
+                        <p>
+                            At this stage the engine can be used to deploy games and apps to a wider range of platforms:
+                        <ul>
+                            <li>Windows</li>
+                            <li>Linux</li>
+                            <li>Android</li>
+                            <li>MacOS</li>
+                            <li><b>Web Browsers</b></li>
+                            <li><b>iOS</b></li>
+                        </ul>
+                        </p>
+
+            </x-milestone>
+
+            <x-task fact='<a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/58.md">nip-58</a>'>
+                gamer profile and achievements over nostr
+            </x-task>
+
+
+            <x-task>              
+                match-making over nostr                  
+            </x-task>
+
+        <x-task fact='<a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/17.md">nip-17</a>'>
+
+                        player to player text-chat over nostr 
+            </x-task>
+            <x-task fact='<a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/28.md">nip-28</a>'>
+                proximity and area text-chat over nostr                    
+            </x-task>
+            <x-milestone title="v0.3.x SOCIAL">
+
+                        <p>
+                            At this stage the engine provides modules with the tools and abstractions to implement
+                            social features in games.
+                        </p>
+                  
+            </x-milestone>
+
+            <x-task>
+                high-level scripting language support module   
+            </x-task>
+            <x-task>
+                sandboxed scripting language support for modding
+            </x-task>
+            <x-milestone title="v0.4.x SCRIPTING" img="imgs/code.webp">
+                <p>
+                    At this stage, the engine supports high-level scripting languages like LUA and JavaScript,
+                    enabling faster development.
+                </p>
+                <p>
+                    Even less experienced developers can create games and apps for
+                    supported platforms, while the sandboxed runtime also serves as a modding framework for
+                    games.
+                </p>
+            </x-milestone>
+
+            <x-task fact='started at <a target="_blank"
+                            href="https://github.com/riccardobl/jmonkeyengine/tree/pipeline">riccardobl/jmonkeyengine</a>'>
+                        programmable pipelines
+            </x-task>
+
+
+            <x-task>
+                tiled deferred rendering
+            </x-task>
+            <x-task>
+                improved post processing stack
+            </x-task>
+            <x-milestone title="v0.5.x SCHISM" >
+            <p>
+                            At this stage the engine core is changed to use programmable pipelines, giving developers
+                            full
+                            control over the execution flow.
+                            This allows for custom optimized implementations tailored to demanding and complex games
+                            seen
+                            often
+                            in AAA titles.
+                        </p>
+                        <p>
+                            The primary rendering technique is switched to tiled based deferred rendering to improve
+                            performances with highly complex lightning and 4k+ rendering.
+                        </p>
+                        <p>
+                            To support the new architecture, the engine is separated from the jMonkeyEngine codebase and
+                            no
+                            longer maintains backward compatibility.
+                        </p>
+            </x-milestone>
+            <x-task>
+                internals overhaul and cleanup
+            </x-task>
+            <x-task>
+                high performance hardware accelerated ui framework
+            </x-task>
+            <x-task fact='started at <a target="_blank" href="https://github.com/jmePhonon">jmePhonon</a>'>
+                immersive audio technology
+            </x-task>
+            <x-milestone title="v0.6.x OVERHAUL" img="imgs/improve.webp">
+ 
+                        <p>
+                            At this stage, more built-in features are added and the internals are improved to
+                            accommodate
+                            even
+                            higher-end games and apps.
+                        </p>
+                    
+            </x-milestone>
+            <x-task>
+                nostr based drm
+            </x-task>
+
+            <x-task fact=' based on 
+                         <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/51.md#sets">nip-51 sets</a>
+                         and 
+                         <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/94.md">nip-94</a>'>
+                nostr based release management
+
+            </x-task>
+            <x-milestone title="v0.7.x DISTRIBUTED DISTRIBUTION"  >
+ 
+                        <p>
+                            At this stage games built with the engine can be fully distributed p2p over nostr markets
+                            with
+                            and licenses are managed by a nostr based digital rights management system.
+                        </p>
+            </x-milestone>
+            <x-task>
+                voxel engine module
+            </x-task>
+            <x-task>
+                world paging module
+            </x-task>
+            <x-task>
+                world persistency over nostr
+            </x-task>
+            <x-milestone title="v0.8.x WORLDs" img="imgs/cubes.webp">
+                <p>
+                    At this stage the engine is extended to support massive and voxel based world with optional
+                    nostr persistency (on supported relays).
+                </p>
+                <p>
+                    This will enable developers to implement common modern gaming mechanics without worrying
+                    about
+                    the
+                    underlying infrastructure.
+                </p>
+                    
+            </x-milestone>
+            <x-task>
+                in-game bitcoin wallet
+            </x-task>
+            <x-task>
+                bitcoin micro-transactions
+            </x-task>
+            
+             
+            <x-milestone title="v0.9.x PAYMENTS" >
+           
+                        <p>
+                            At this stage the engine provides capabilities to implement microtransactions and in-game
+                            payments
+                            using bitcoin.
+                            <br>
+                            <i>TBD: lightning? liquid? e-chash? ark?</i>
+                        </p>
+            </x-milestone>
+            <x-task>
+                frame generation and super resolution
+            </x-task>
+            <x-task>
+                final touches
+            </x-task>
+            <x-milestone title="v1.0.x NGE!" img="imgs/bitcoin.webp">
+            
+               
+                        <p>
+                            The engine is released as its first stable version.
+                        </p>
+                    
+            </x-milestone>
+        
+            <div class="task tbd"></div>
+            <div class="task tbd"></div>
+            <div class="task tbd"></div>
+            <div class="task tbd"></div>
+            <x-milestone title="v1.1.x TBD" t="tbd">
+
+                <ul>
+                    <li>Voice Chat with RTC nostr signaling</li>
+                    <li>Proximity Voice Chat with RTC nostr signaling</li>
+                    <li>Virtual Reality support</li>
+                    <li> Augmented Reality support</li>
+                    <li>AI capabilities are added on top of the engine to assist with content generation and
+                        player
+                        interaction.</li>
+                </ul>
+
+                </x-milestone>
+
+        </div>
+    </section>

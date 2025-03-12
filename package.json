@@ -1,0 +1,19 @@
+{
+  "name": "nge-webpages",
+  "version": "1.0.0",
+  "main": "serve.js",
+  "scripts": {
+    "serve": "node serve.js",
+    "build": "node build.js"
+  },
+  "author": "Riccardo Balbo <os@rblb.it>",
+  "license": "BSD-3-Clause",
+  "description": "The Nostr Game Engine website generator and services",
+  "dependencies": {
+    "express": "^4.21.2",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
+    "xmldom": "^0.6.0"
+  },
+  "type": "module"
+}

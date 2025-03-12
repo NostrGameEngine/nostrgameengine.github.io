@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 24 24"
+   id="Layer_1"
+   data-name="Layer 1"
+   version="1.1"
+   sodipodi:docname="p2p.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview29"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.28375"
+     inkscape:cx="399.61052"
+     inkscape:cy="399.61052"
+     inkscape:window-width="2560"
+     inkscape:window-height="1408"
+     inkscape:window-x="1080"
+     inkscape:window-y="272"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:none;stroke:#020202;stroke-miterlimit:10;stroke-width:1.91px;}</style>
+  </defs>
+  <circle
+     class="cls-1"
+     cx="12"
+     cy="12"
+     r="1.91"
+     id="circle6"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <path
+     class="cls-1"
+     d="M9.14,16.77h0A2.86,2.86,0,0,1,12,13.91h0a2.86,2.86,0,0,1,2.86,2.86h0"
+     id="path8"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <circle
+     class="cls-1"
+     cx="20.59"
+     cy="3.41"
+     r="1.91"
+     id="circle10"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <circle
+     class="cls-1"
+     cx="3.41"
+     cy="20.59"
+     r="1.91"
+     id="circle12"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <circle
+     class="cls-1"
+     cx="20.11"
+     cy="20.11"
+     r="2.39"
+     id="circle14"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <circle
+     class="cls-1"
+     cx="3.89"
+     cy="3.89"
+     r="2.39"
+     id="circle16"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <line
+     class="cls-1"
+     x1="7.95"
+     y1="16.05"
+     x2="4.75"
+     y2="19.25"
+     id="line18"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <line
+     class="cls-1"
+     x1="19.25"
+     y1="4.75"
+     x2="16.05"
+     y2="7.95"
+     id="line20"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <path
+     class="cls-1"
+     d="M17.73,12a5.74,5.74,0,1,1-1.68-4A5.69,5.69,0,0,1,17.73,12Z"
+     id="path22"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <line
+     class="cls-1"
+     x1="18.42"
+     y1="18.42"
+     x2="16.05"
+     y2="16.05"
+     id="line24"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+  <line
+     class="cls-1"
+     x1="7.95"
+     y1="7.95"
+     x2="5.58"
+     y2="5.58"
+     id="line26"
+     style="stroke-width:1.35;stroke-dasharray:none" />
+</svg>
