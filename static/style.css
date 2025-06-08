@@ -670,7 +670,9 @@
   }
 
 
-
+.t-icon {
+    color: var(--light-purple);
+}
 
   h1 .small {
       font-size: 0.9rem;

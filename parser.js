@@ -39,12 +39,16 @@ function processConditionals(html, attributes) {
     const ifdefRegex = /\$\$ifdef:([a-zA-Z0-9_]+)\$\$([\s\S]*?)\$\$endif\$\$/g;
 
     return html.replace(ifdefRegex, (match, attrName, content) => {
+        if (attrName === "value" || attrName === "xmlns") return content;
+
         const attribute = attributes.find(attr => attr.name === attrName);
 
         // If the attribute exists, keep the content (without the ifdef/endif tags)
         if (attribute && attribute.value) {
             // Replace $$attrName$$ with the attribute value
-            return content.replace(new RegExp(`\\$\\$${attrName}\\$\\$`, 'g'), attribute.value);
+            content = content.replace(new RegExp(`\\$\\$${attrName}\\$\\$`, 'g'), attribute.value);
+            content = content.replace(new RegExp(`___${attrName}___`, 'g'), attribute.value);
+            return content;
         }
 
         // If the attribute doesn't exist or is empty, remove the entire block
@@ -77,22 +81,14 @@ export async function parse(originalHtml, reload = false) {
 
                 componentHtml = processConditionals(componentHtml, attributes);
 
-                
-                const componentDom = new DOMParser().parseFromString(componentHtml, 'text/html');
-
-                // Replace <slot> with inner elements nodes
-                const innerHtml = new XMLSerializer().serializeToString(element);
-                replaceTagWithValue(componentDom, 'slot', innerHtml);
-
-                // Replace <slot:attribute></slot:attribute> with attribute value
-                for (const attribute of attributes) {
-                    replaceTagWithValue(componentDom, `slot-${attribute.name}`, attribute.value);
+                let innerHtml = new XMLSerializer().serializeToString(element);
+                let innerText = innerHtml;
+                if (element.childNodes.length > 0 && element.childNodes[0].nodeType == 3) {
+                    innerText = element.childNodes[0].textContent;
                 }
 
-                componentHtml = new XMLSerializer().serializeToString(componentDom);
-
                 // Replace $$attribute$$ with attribute value
-              
+
                 const regex = /\$\$([a-zA-Z0-9_]+)\$\$/g;
                 let match;
                 while ((match = regex.exec(componentHtml)) !== null) {
@@ -103,10 +99,27 @@ export async function parse(originalHtml, reload = false) {
 
 
 
-                
+
 
                 // Replace $$value$$ with innerHtml
-                componentHtml = componentHtml.replace(/\$\$value\$\$/g, innerHtml);
+                componentHtml = componentHtml.replace(/___value___/g, innerText);
+                componentHtml = componentHtml.replace(/\$\$value\$\$/g, innerText);
+
+
+                const componentDom = new DOMParser().parseFromString(componentHtml, 'text/html');
+
+         
+                // Replace <slot> with inner elements nodes
+
+                replaceTagWithValue(componentDom, 'slot', innerHtml);
+
+                // Replace <slot:attribute></slot:attribute> with attribute value
+                for (const attribute of attributes) {
+                    replaceTagWithValue(componentDom, `slot-${attribute.name}`, attribute.value);
+                }
+
+                componentHtml = new XMLSerializer().serializeToString(componentDom);
+
 
 
                 const componentFragment = new DOMParser().parseFromString(componentHtml, 'text/html').documentElement;
