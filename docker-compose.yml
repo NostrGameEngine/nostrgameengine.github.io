@@ -12,56 +12,40 @@ x-fake-healthcheck: &fake-healthcheck
 
 services:
   certbot:
-    image: certbot/dns-cloudflare
-    container_name: certbot-cf
+    image: certbot/certbot
+    container_name: certbot
     volumes:
-      - "/srv/letsencrypt/etc:/etc/letsencrypt"
-      - "/srv/letsencrypt/log:/var/log/letsencrypt"
-      - "/srv/letsencrypt/lib:/var/lib/letsencrypt"
-      - "/srv/letsencrypt/cf.ini:/etc/cf.ini"
+      - ./docker/certbot/www:/var/www/certbot
+      - ./docker/certbot/conf:/etc/letsencrypt
     healthcheck:
       test: ["CMD", "true"]
       <<: *healthcheck    
-    entrypoint: >
-      sh -c "
-        while true; do
-          sleep 600
-        done
-      "
-    environment:
-      - SSL_DOMAINS=${SSL_DOMAINS}
-      - SSL_ROOT=${SSL_ROOT}
-      - TEAM_EMAIL_DEST=${TEAM_EMAIL_DEST}
-    restart: "no"
+    entrypoint: /bin/sh -c
+    depends_on:
+      - gateway
+    command: >
+      "trap exit TERM;
+       while :; do sleep 6h & wait $${!}; certbot renew --webroot -w /var/www/certbot; done"
+    restart: always
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.certbotmonthly.schedule: "@monthly"
-      ofelia.job-exec.certbotmonthly.command: >
+      ofelia.job-exec.certbotrenew.schedule: "@every 10m"
+      ofelia.job-exec.certbotrenew.command: >
         sh -c "
-          certbot certonly
-            --dns-cloudflare
-            --dns-cloudflare-credentials /etc/letsencrypt/cf.ini
-            --dns-cloudflare-propagation-seconds 60
-            --non-interactive --expand --agree-tos -m $TEAM_EMAIL_DEST
-            -d "$SSL_DOMAINS" --cert-name $SSL_ROOT
-        "
-      ofelia.job-exec.certbotstartup.schedule: "@startup"  # Run the job immediately upon startup
-      ofelia.job-exec.certbotstartup.command: >
-        sh -c "
-          certonly
-            --dns-cloudflare
-            --dns-cloudflare-credentials /etc/letsencrypt/cf.ini
-            --dns-cloudflare-propagation-seconds 60
-            --non-interactive --expand --agree-tos -m $TEAM_EMAIL_DEST
-            -d "$SSL_DOMAINS" --cert-name $SSL_ROOT
+          if [ ! -f /etc/letsencrypt/initialized ]; then 
+            rm -rf /etc/letsencrypt/live/nge &&\
+            certbot certonly --webroot -w /var/www/certbot ${CERTBOT_DOMAINS} --non-interactive --cert-name nge --email ${TEAM_EMAIL} --agree-tos --no-eff-email &&\
+            echo 1 > /etc/letsencrypt/initialized &&\
+            echo 1 > /etc/letsencrypt/renewed ;\
+          fi
         "
 
   gateway:
     image: nginx:stable-alpine
     container_name: gateway
     volumes:
-      - /srv/letsencrypt/etc/archive/$SSL_ROOT:/etc/letsencrypt/archive/$SSL_ROOT:ro
-      - /srv/letsencrypt/etc/live/$SSL_ROOT:/etc/letsencrypt/live/certs:ro
+      - ./docker/certbot/www:/var/www/certbot
+      - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/nginx:/etc/nginx:ro
     ports:
       - "80:80"
@@ -75,11 +59,13 @@ services:
     restart: always
     networks:
       - gateway
-
+ 
   nostr:
     image: ghcr.io/hoytech/strfry:latest
     container_name: nostr
     restart: always
+    depends_on:
+      - gateway
     volumes:
       - ./docker/nostr/strfry.conf:/etc/strfry.conf:ro
       - /srv/nostr/data:/app/strfry-db
@@ -102,6 +88,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/certbot/conf:/etc/letsencrypt
     healthcheck:
       test: ["CMD", "true"]
       <<: *healthcheck
@@ -121,7 +108,7 @@ services:
       "
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.gatewayrefresh.schedule: "@every 1m"
+      ofelia.job-exec.gatewayrefresh.schedule: "@every 5m"
       ofelia.job-exec.gatewayrefresh.command: >
         bash -c "
           watched_containers=\$$(docker network inspect \"gateway\" --format '{{range .Containers}}{{.Name}} {{end}}') && \
@@ -135,18 +122,28 @@ services:
                 docker restart gateway
             fi
           done
+          if [ -f /etc/letsencrypt/renewed ]; then
+            echo \"Detected renewed certificates. Restarting gateway...\"
+            docker restart gateway
+            rm -f /etc/letsencrypt/renewed
+          fi
+        "
+      ofelia.job-exec.gatewaymonthlyreload.schedule: "@monthly"
+      ofelia.job-exec.gatewaymonthlyreload.command: >
+        bash -c "
+          docker exec gateway nginx -s reload
         "
 
-  website:
-    build:
-      context: .
-    container_name: homepage
-    restart: always
-    healthcheck:
-      test: ["CMD", "true"]
-      <<: *healthcheck
-    networks:
-      - gateway    
+  # website:
+  #   build:
+  #     context: .
+  #   container_name: homepage
+  #   restart: always
+  #   healthcheck:
+  #     test: ["CMD", "true"]
+  #     <<: *healthcheck
+  #   networks:
+  #     - gateway    
 
   cron:
     container_name: cron
@@ -171,6 +168,8 @@ services:
 networks:
   gateway:
     driver: bridge
+    name: gateway
   nostr:
     driver: bridge
+    name: nostr
   

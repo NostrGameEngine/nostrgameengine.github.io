@@ -9,16 +9,17 @@
                 A JVM-based high performance, royalty-free, open-source modular game engine.
             </x-milestone>
 
-            <x-task t="tick">
-                a nostr client is implemented natively as an engine module
+            <x-task t="tick" fact="<a target='_blank' href='https://github.com/NostrGameEngine/nostr4j'>nostr4j</a> standalone library">
+                a high-performance nostr client designed for real-time application is developed and
+                integrated into the engine
             </x-task>
 
-            <x-task t="tick">
-                players can be authenticated via nostr keypair and remote signers
+            <x-task t="tick" fact="<a target='_blank' href='https://ngengine.org/docs/auth/'>nge-auth</a> engine module">
+                player authentication via nostr local and remote signers
             </x-task>
 
 
-            <x-task   t="tick" fact='started at <a href="https://github.com/riccardobl/nostr-rtc" target="_blank">riccardobl/nostr-rtc</a>'>
+            <x-task   t="tick"  fact="<a target='_blank' href='https://ngengine.org/docs/network/'>nge-networking</a> engine module">
                 the network stack module is replaced with high-throughput, serverless, encrypted P2P using
                 <b>RTC over Nostr signaling</b>, enabling easy development of decentralized games and apps
             </x-task>
