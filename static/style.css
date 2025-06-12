@@ -356,7 +356,9 @@
 
 
 
-  article img {
+  article img,
+  article video
+  {
       max-width: 100%;
       margin: auto;
       display: block;

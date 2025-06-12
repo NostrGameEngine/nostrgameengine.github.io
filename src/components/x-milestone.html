@@ -5,7 +5,14 @@
                 <p>
                     <slot></slot>
                 </p>
+                $$ifdef:img$$
                 <img src="$$img$$" />
+                $$endif$$
+                $$ifdef:vid$$
+                <video autoplay muted loop style="filter: saturate(1.2)">
+                    <source src="$$vid$$" type="video/webm">
+                </video>
+                $$endif$$
             </article>
         </card>
     </div>
