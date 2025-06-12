@@ -13,6 +13,11 @@
                     <source src="$$vid$$" type="video/webm">
                 </video>
                 $$endif$$
+                $$ifdef:link$$
+                <button onclick="document.location.href='$$link$$'">
+                   Get $$title$$
+                </button>
+                $$endif$$
             </article>
         </card>
     </div>

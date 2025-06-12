@@ -11,6 +11,7 @@
       --neon-blue: #00F0FF;
       --neon-blueA: #00eeff65;
       --neontoshi: #F7931A;
+    --neon-blueA2:rgba(0, 238, 255, 0.082);
   }
 
   /** ANIMS */
@@ -774,4 +775,30 @@ input[type="text"]:focus {
     outline: none;
     border-color: var(--accent-purple);
     box-shadow: 0 0 5px var(--glow-purple);
+}
+
+button{
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.0rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--light-purple);
+    border: 2px solid var(--light-purpleA);
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    color: var(--dark-purple);
+    box-shadow: 0.1rem 0.1rem 0.2rem var(--neon-blueA2),
+    -0.1rem -0.1rem 0.4rem var(--glow-purpleA);
+
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--glow-purple);
+    color: var(--dark-purple);
+
+ box-shadow: 0.1rem 0.1rem 0.2rem var(--glow-purpleA),
+    -0.1rem -0.1rem 0.4rem var(--neon-blueA2);
 }
