@@ -294,6 +294,7 @@
   }
 
   @media (max-width: 1000px) {
+ 
 
       .milestone,
       .task {
@@ -346,7 +347,8 @@
       }
 
       header nav {
-          margin-top: -0.4rem;
+          margin-top: 2.4rem;
+          gap:2rem;
       }
 
       section.hero {
@@ -802,4 +804,23 @@ button:hover {
 
  box-shadow: 0.1rem 0.1rem 0.2rem var(--glow-purpleA),
     -0.1rem -0.1rem 0.4rem var(--neon-blueA2);
+}
+
+img.bnr{
+    max-width: min(600px,90vw);
+    border-radius: 0.3rem;
+    
+}
+h3.compact{
+    max-width: 400px;
+}
+h3.medium-compact {
+    max-width: 800px;
+}
+h3.left{
+    text-align: left;
+}
+
+.h .top {
+    align-self: flex-start;
 }

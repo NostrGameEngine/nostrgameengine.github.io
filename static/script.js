@@ -1,6 +1,8 @@
 let stickyHeaderEl = null;
  function stickyHeader(headerEl){
     if (window.scrollY > 0) {
+        if (window.innerWidth <= 1000) return;
+
         if (!stickyHeaderEl){            
             stickyHeaderEl =headerEl.cloneNode(true);
             stickyHeaderEl.classList.add('sticky');
