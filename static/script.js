@@ -19,12 +19,25 @@ let stickyHeaderEl = null;
     }
 }
 
+
+async function patch(){
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/safari-style.css';
+        document.head.appendChild(link);
+    }
+}
+
 async function main(){
     const headerEl = document.querySelector('header');    
     window.addEventListener('scroll', function(){
         stickyHeader(headerEl);
     });
     stickyHeader(headerEl);
+
+
+    patch();
 }
 
 

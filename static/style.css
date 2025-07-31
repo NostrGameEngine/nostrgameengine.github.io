@@ -1,18 +1,22 @@
   @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
   :root {
-      --dark-purple: #1B0629;
-      --medium-purple: #3E1E68;
-      --light-purple: #8357C5;
-      --accent-purple: #E75AFF;
-      --glow-purple: #C47AFF;
-      --glow-purpleA: rgba(195, 122, 255, 0.5);
-      --text-color: #E0D5FF;
-      --neon-blue: #00F0FF;
-      --neon-blueA: #00eeff65;
-      --neontoshi: #F7931A;
+    --dark-purple: #1B0629;
+    --medium-purple: #3E1E68;
+    --light-purple: #8357C5;
+    --accent-purple: #E75AFF;
+    --glow-purple: #C47AFF;
+    --text-color: #E0D5FF;
+    --neon-blue: #00F0FF;
+    --neontoshi: #F7931A;
+    
+    --glow-purpleA: rgba(195, 122, 255, 0.5);
+    --neon-blueA: rgba(0, 238, 255, 0.4);
     --neon-blueA2:rgba(0, 238, 255, 0.082);
   }
+
+
+
 
   /** ANIMS */
   @keyframes pulse-glow {
