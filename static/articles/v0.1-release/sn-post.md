@@ -87,3 +87,10 @@ Your support means a lot!
 
 On that note, If you’d like to support the project, contributions via the  [crowdfunding page](https://ngengine.org/support.html) page will directly help sustain long-term development.
 
+
+---
+
+That’s all for now. Hope you like what’s been built so far!
+
+
+[Follow on Nostr](https://njump.me/npub146wutmuxfmnlx9fcty0lkns2rpwhnl57kpes26mmt4hygalsakrsdllryz)
