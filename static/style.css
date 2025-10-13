@@ -21,7 +21,7 @@
   /** ANIMS */
   @keyframes pulse-glow {
       0% {
-          box-shadow: 0 0 10px var(--accent-purple);
+          box-shadow: 0 0 10px var(--neon-blue);
       }
 
       100% {
@@ -180,6 +180,7 @@
 
   .timeline {
       position: relative;
+      width: 100%;
       margin: 0 auto;
   }
 
@@ -187,7 +188,7 @@
       content: '';
       position: absolute;
       width: 0.2rem;
-      background-color: var(--accent-purple);
+      background-color: var(--medium-purple);
       top: 0;
       bottom: 0;
       left: 50%;
@@ -201,14 +202,16 @@
       height: 2rem;
       right: -1.2rem;
       background-color: var(--accent-purple);
-      border: 0.2rem solid var(--text-color);
+      border: 0.2rem solid var(--medium-purple);
       box-shadow: 0 0 1rem var(--accent-purple), 0 0 2rem var(--glow-purple);
-      animation: pulse-glow 2s infinite alternate;
       top: 1rem;
       border-radius: 50%;
       filter: grayscale(80%);
   }
 
+  .milestone.tick::after {
+        animation: pulse-glow 2s infinite alternate;
+  }
 
   .task::after {
       content: '';
@@ -217,11 +220,19 @@
       height: 1rem;
       left: -0.7rem;
       background-color: var(--accent-purple);
-      border: 0.2rem solid var(--text-color);
+      border: 0.2rem solid var(--medium-purple);
       top: 1rem;
       border-radius: 50%;
       filter: grayscale(80%);
 
+  }
+
+  .milestone, .task{
+    opacity:0.6;
+  }
+
+  .milestone.tick, .task.tick{
+    opacity:1;
   }
 
   .tick::after {
@@ -520,12 +531,12 @@
   }
 
   nav a.highlight {
-      background-color: var(--accent-purple);
+      background-color: var(--dark-purple);
       padding: min(1.2rem, 5vw);
       padding-left: min(2rem, 8vw);
       padding-right: min(3rem, 10vw);
       border-radius: 0.5rem;
-      color: var(--dark-purple);
+      color: var(--accent-purple);
       margin: 0;
       flex-direction: row;
       font-size: min(2rem, 8vw);
@@ -609,7 +620,7 @@
       background-position: center;
       background-size: cover;
       z-index: 2 !important;
-      opacity: 0.5;
+      opacity: 0.7;
       border-radius: 0.5rem;
   }
 
@@ -735,7 +746,13 @@
       width: min(19rem, 90vw);
       display: block;
   }
-
+  article{
+    height:100%;
+  }
+  card footer{
+    margin:0;
+    margin-top:auto
+}
   footer {
       margin-top: 6rem;
       margin-bottom: 2rem;

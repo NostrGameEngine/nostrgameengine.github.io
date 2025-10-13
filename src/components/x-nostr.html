@@ -1,0 +1,56 @@
+<section class="nostr-glitch" data-text="Notes and Other Stuff Transmitted by Relays" data-target="Other Stuff">
+    <h3><span><c>N</c>otes and</span> <span class="otherstuff"><c>O</c>ther <c>S</c>tuff<span class="you-are-here" aria-hidden="true">
+        <span class="label">you are here</span>
+        <span class="arrow"></span>
+    </span></span> <span></span><c>T</c>ransmitted by <c>R</c>elays</span></h3>
+    <style>
+        .nostr-glitch c{
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+        .nostr-glitch h3{
+            font-size:max(3vmin,1.8rem);
+            text-align: center;
+        }
+           .nostr-glitch .otherstuff {
+            position: relative;
+            display: inline-block;
+            color:var(--accent-purple);
+        }
+        .nostr-glitch .you-are-here {
+            position: absolute;
+            left: 50%;
+            top: -1.9em;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            color: var(--accent-purple);
+            font-weight: 700;
+            font-size: max(1vmin,0.8rem);
+            pointer-events: none;
+            text-shadow: 0 0 6px var(--dark-purple);
+        }
+        .nostr-glitch .you-are-here .label {
+            padding: .1rem .35rem;
+            border: 1px dashed var(--accent-purple);
+            background: var(--dark-purple);
+            opacity: 0.8;
+            border-radius: 4px;
+            line-height: 1;
+            padding:0.2rem;
+            padding-left:1rem;
+            padding-right:1rem;
+            white-space: nowrap;
+        }
+        .nostr-glitch .you-are-here .arrow {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 10px solid var(--accent-purple);
+            filter: drop-shadow(0 0 4px var(--dark-purple));
+        }
+    </style>
+</section>

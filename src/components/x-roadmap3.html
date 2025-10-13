@@ -1,0 +1,188 @@
+<section>
+    <div class="timeline">
+
+         
+
+    
+        <x-task>
+            An unified input system is built to support a wide range of input devices from a single abstraction.
+        </x-task>
+        <x-task>
+            OpenXR backend is built into the engine
+        </x-task>
+        <x-task>
+            PCVR support: apps can be displayed in VR headsets connected to a PC
+        </x-task>
+        <x-task>
+            AndroidXR support: apps can be displayed in standalone VR headsets that use android and OpenXR
+        </x-task>
+        <x-task>
+            Interoperable game objects: nips define a common format for game objects that can be shared
+            across games and experiences, allowing players to carry their items and inventory with them.
+        </x-task>
+        <x-milestone title="v0.4.x Nostrverse"  img="imgs/vr.webp">
+            <p>
+                Developers can build
+                immersive XR experiences and traditional games that can interact with each other through a common
+                set of interoperable nips.
+            </p>
+        </x-milestone>
+        <x-task t="tick">
+            nwc capabilities are added to nostr4j
+        </x-task>
+        <x-task>
+            in-game nwc bitcoin wallet
+        </x-task>
+        <x-task>
+            in-game nodeless bitcoin wallet
+        </x-task>
+        <x-task>
+            bitcoin micro-transactions
+        </x-task>
+        
+        
+        <x-milestone title="v0.5.x PAYMENTS">
+        
+            <p>
+                At this stage the engine provides capabilities to implement microtransactions and in-game
+                payments
+                using bitcoin.
+            </p>
+        </x-milestone>
+        <x-task>
+            Google ANGLE-based rendering backend that unifies all platforms under a common OpenGL ES 3.0 core feature set.
+        </x-task>
+        <x-task>
+            iOS release support built on top of the google angle metal backend
+        </x-task>
+
+        <x-milestone title="v0.6.x Angle">
+            <p>
+                At this stage the engine supports a new render backend based on google angle.
+                This allows to support a wider range of platforms by translating opengl calls to 
+                the best underlying graphics api available on the platform.
+                <br>
+                <br>
+                iOS is added as a new build target, allowing developers to reach
+                a wider audience.
+            </p>
+        </x-milestone>
+        <x-task
+            fact='started at <a target="_blank"
+                            href="https://github.com/riccardobl/jmonkeyengine/tree/pipeline">riccardobl/jmonkeyengine</a>'>
+            programmable pipelines
+        </x-task>
+        <x-task t="tick">
+            improve render parity with blender and global illumination
+        </x-task>
+        <x-task>
+            tiled deferred rendering
+        </x-task>
+        <x-task>
+            improved post processing stack
+        </x-task>
+        <x-task>
+            internals overhaul and cleanup
+        </x-task>
+
+        <x-milestone title="v0.7.x OVERHAUL" img="imgs/improve.webp">
+
+            <p>      
+                The full backward compatibility with jMonkeyEngine is dropped as the engine shifts towards
+                a more modern architecture that has programmable pipelines at its core, giving developers
+                full  ontrol over the execution flow.              
+            </p>
+            <p>
+                The primary rendering technique is switched to tiled based deferred rendering to improve
+                performances with highly complex lightning and 4k+ rendering.
+            </p>            
+                At this stage, the engine internals are cleaned up and refactored, all the deprecated features
+                are removed and the codebase is prepared for the upcoming releases.
+            </p>
+
+        </x-milestone>
+
+        <x-task>
+            nostr based drm
+        </x-task>
+        <x-task t="tick" fact="nostrdeploy">
+            web deploy to nostr and blossom
+        </x-task>
+
+        <x-task
+            fact=' based on 
+                         <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/51.md#sets">nip-51 sets</a>
+                         and 
+                         <a target="_blank" href="https://github.com/nostr-protocol/nips/blob/master/94.md">nip-94</a>'>
+            nostr based release management
+
+        </x-task>
+        
+        <x-milestone title="v0.8.x DISTRIBUTED DISTRIBUTION">
+
+            <p>
+                At this stage games built with the engine can be distributed fully p2p over nostr markets
+                with
+                and licenses are managed by a nostr based digital rights management system.
+            </p>
+        </x-milestone>
+        <x-task>
+            2D world building module
+        </x-task>
+        <x-task>
+            3D voxel engine module
+        </x-task>
+        <x-task>
+            world paging module
+        </x-task>
+        <x-task>
+            world persistency over nostr
+        </x-task>
+        <x-milestone title="v0.9.x WORLDs" img="imgs/cubes.webp">
+            <p>
+                At this stage the engine is extended to support massive and voxel based world with optional
+                nostr persistency (on supported relays).
+            </p>
+            <p>
+                This will enable developers to implement common modern gaming mechanics without worrying
+                about
+                the
+                underlying infrastructure.
+            </p>
+
+        </x-milestone>
+  
+        <x-task>
+            frame generation and super resolution
+        </x-task>
+        <x-task>
+            final touches
+        </x-task>
+        <x-milestone title="v1.0.x NGE!" img="imgs/bitcoin.webp">
+
+
+            <p>
+                The engine is released as its first stable version.
+            </p>
+
+        </x-milestone>
+
+        <div class="task tbd"></div>
+        <div class="task tbd"></div>
+        <div class="task tbd"></div>
+        <div class="task tbd"></div>
+        <x-milestone title="v2.x.x TBD" t="tbd">
+
+            <ul>
+                <li>Voice Chat with RTC nostr signaling</li>
+                <li>Proximity Voice Chat with RTC nostr signaling</li>
+                <li> Augmented Reality support</li>
+                <li>AI capabilities are added on top of the engine to assist with content generation and
+                    player
+                    interaction.</li>
+            </ul>
+
+        </x-milestone>
+
+    </div>
+</section>

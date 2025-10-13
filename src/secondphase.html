@@ -1,0 +1,158 @@
+<x-page-noindex title="| Second Phase">
+
+    <section class="hero">
+        <div style="background-image: url('/imgs/cubes-night.webp');" class="cover-bg-blurred">
+
+        </div>
+        <div style="background-image: url('/imgs/cubes-night.webp');" class="cover-bg">
+
+
+
+            <h2>A game engine and framework for building games and applications integrated
+                with the Nostr ecosystem
+                <br><br>
+                <x-nostr></x-nostr>
+            </h2>
+
+
+
+
+    </section>
+
+    <section>
+        <x-title>Second Phase</x-title>
+        <article style="text-shadow:none;background:var(--medium-purple);padding:1rem;text-align:left;font-size:1.3rem">
+ 
+                <h3>Summary of the first phase</h3>
+                During the initial development phase, the Nostr Game Engine was bootstrapped from the
+                <b>jMonkeyEngine</b>
+                codebase.
+
+                <br>
+                <br>
+
+                The original network stack was fully replaced with a
+                <a href="https://github.com/NostrGameEngine/ngengine/tree/master/nge-networking">peer-to-peer
+                    architecture</a>
+                powered by
+                <a
+                    href="https://github.com/NostrGameEngine/nostr4j/tree/master/nostr4j/src/main/java/org/ngengine/nostr4j/rtc">
+                    Nostr signaling
+                </a>, enabling decentralized, permissionless connectivity between players.
+                <br><br>
+
+                Core Nostr functionality was implemented via <a
+                    href="https://github.com/NostrGameEngine/nostr4j">nostr4j</a>,
+                a purpose-built client library developed from scratch.
+                This
+                library provides full support for advanced Nostr capabilities, including <b>NWC</b>, <b>Blossom</b>, and
+                other Nostr
+                extensions.
+                <br><br>
+
+
+                A <a href="https://nostr-ads.ngengine.org/">Nostr-based advertising system</a> was also created—both
+                as an <a href="https://ngengine.org/docs/ads/">engine module</a> and as a standalone library, allowing
+                developers to integrate permissionless ad networks directly into their games or related applications.
+                <br><br>
+
+
+                <a href="https://ngengine.org/docs/network/lobby/">Matchmaking</a> and
+                <a href="https://ngengine.org/docs/network/player/#fetching-player-instances">player profile
+                    management</a>
+                have been fully implemented over Nostr, leveraging its decentralized
+                event model to enable identity persistence and social discovery without centralized servers.
+                <br><br>
+
+
+                The engine now includes a <a href="https://ngengine.org/docs/auth/">managed authentication subsystem</a>
+                capable of automatically authenticating players using
+                <b>NIP-07</b>, <b>NIP-46</b>, or locally encrypted private keys.
+                <br>
+                <br>
+
+                Multiple <b>upstream patches and extensions</b> were applied to <b>jMonkeyEngine</b>, enhancing its
+                overall performance,
+                feature set, and <b></b>Android support</b>.
+                <br>
+                <br>
+
+                Furthermore, the entire engine was <a
+                    href="https://github.com/NostrGameEngine/ngengine/tree/master/nge-web">
+                    ported to WebGL2</a> and modern web technologies via <b>TeaVM</b>, enabling
+                cross-compilation to JavaScript with near-native performance. This makes it possible to deploy NGE-based
+                games directly
+                in browsers. No installation required.
+                <br><br>
+
+
+                Finally, a comprehensive <a href="https://github.com/NostrGameEngine/nge-app-template">
+                    build and deployment system</a> gradle template was integrated into the engine’s app template. This
+                toolchain
+                supports packaging for all target platforms and enables seamless deployment to <b>Nostr-based static
+                    websites</b>
+                through the third-party service <a href="https://nostrdeploy.com">nostrdeploy</a>.
+                                <br>
+                <br>
+                <br>
+
+                
+                <h3>Overview of the second phase</h3>
+            The second phase will focus on integrating additional Nostr-based social features, expanding the engine’s capabilities and strengthening its multiplayer and community-driven components.
+            <br>
+            <br>
+            A subsequent stage will concentrate on improving abstractions and developer accessibility. This phase aims to make the
+            engine more intuitive and easier to use, particularly for newcomers. During this period, video tutorials, documentation,
+            and example projects will be developed to showcase the engine’s features and support the creation of Nostr-powered games
+            and applications.
+            <br><br>
+
+            Later stages will extend the engine to support VR applications and enable interoperability between
+            games and experiences, allowing them to connect and integrate over Nostr.
+<br><br>
+<hr>
+                    <br><br>
+
+                    The complete roadmap, including details of the completed first phase, is available on the <a href="/">home page</a>.
+                    <br><br>
+
+                    While, the roadmap for the second phase and beyond is outlined below. 
+                <br>
+            <br>
+
+            <sub>Note: that some tasks were completed
+            early during the first phase for practical reasons.</sub>
+            <sub>
+                Note: This roadmap contains some AI generated imagery as placeholders, 
+                as the roadmap progresses they will be
+                replaced
+                with
+                actual engine screenshots and videos.
+            </sub>
+
+
+         </article>
+        <x-roadmap2></x-roadmap2>
+
+        <h2>Educational Interlude</h2>
+        <p>
+            Enough features are in place to start building interesting games and apps.
+            <br>
+            We'll take a break from adding new features to focus on education and outreach by creating
+            detailed tutorials and videos that showcase the engine capabilities and help new developers get started
+            building
+            nostr
+            powered games and applications.
+        </p>
+
+        <x-roadmap3></x-roadmap3>
+
+    </section>
+    <style>
+        .milestone,
+        .task {
+            opacity: 1;
+        }
+    </style>
+
+</x-page-noindex>
