@@ -5,56 +5,23 @@
         You can download the native app for your platform, or try the web version below.
     </p>
     <nav>
-        <a id="dl" href="https://github.com/NostrGameEngine"><ion-icon name="download-outline"></ion-icon>Download and Install</a>
+        <a id="dl" href="https://github.com/NostrGameEngine"><ion-icon name="download-outline"></ion-icon>Download Native Build</a>
         <a id="src" href="https://github.com/NostrGameEngine"><ion-icon name="logo-github"></ion-icon>Source Code</a>
         <a href="/showcase.html"><ion-icon name="albums-outline"></ion-icon>See more Demos</a>
         <a href="/showcase.html"><ion-icon name="planet-outline"></ion-icon>Check out NGE</a>
     </nav>
+    <div class="warning" id="noweb" style="display:none">
+        This demo is not fully optimized for the web.
+        <br>
+        Performance may be poor on older / low-power hardware, throttled laptops, or browsers with limited WebGL2 support.
+        <br>
+        For the best experience (faster startup, better memory usage), download the native build from the link above.
+    </div>
     <iframe id="webapp"
      style="width:100%; height:80vh; border:none"
-     sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
         src="">
     </iframe>
-        <div id="iframe-console" class="iframe-console" aria-live="polite"></div>
-        
-        <style>
-            .iframe-console {
-                font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-                background: var(--bg-2, #0f1220);
-                color: var(--fg, #e6f1ff);
-                border: 1px solid rgba(255, 255, 255, .08);
-                border-radius: 6px;
-                padding: 8px;
-                margin-top: 10px;
-                max-height: 240px;
-                overflow: auto;
-            }
-        
-            .iframe-console .row {
-                white-space: pre-wrap;
-                word-break: break-word;
-                margin: 2px 0;
-            }
-        
-            .iframe-console .row .ts {
-                opacity: .6;
-                margin-right: .5em;
-            }
-        
-            .iframe-console .row.log {}
-        
-            .iframe-console .row.info {
-                color: #9cdcfe;
-            }
-        
-            .iframe-console .row.warn {
-                color: #d7ba7d;
-            }
-        
-            .iframe-console .row.error {
-                color: #f48771;
-            }
-        </style>
+ 
     <script>
         window.addEventListener('load', (event) => {
             const params = new URLSearchParams(window.location.search);
@@ -68,59 +35,12 @@
                 document.getElementById('dl').href = "https://github.com/NostrGameEngine/" + demoId + "/releases";
                 const frame = document.getElementById('webapp');
                 frame.src = "https://ngengine.org/" + demoId;
-                const panel = document.getElementById('iframe-console');
+               
+            }
+            const noWeb = params.get('noweb');
+            if (noWeb === '1') {
+                document.getElementById('noweb').style.display = 'block';
 
-                function toStr(v) {
-                    if (v instanceof Error) return v.stack || (v.name + ': ' + v.message);
-                    const t = typeof v;
-                    if (t === 'string') return v;
-                    if (t === 'function') return v.toString();
-                    try { return JSON.stringify(v, null, 2); } catch { return String(v); }
-                }
-                function append(type, args) {
-                    const row = document.createElement('div');
-                    row.className = 'row ' + type;
-                    const ts = new Date().toISOString().split('T')[1].replace('Z', '');
-                    row.innerHTML = `<span class="ts">${ts}</span>${args.map(toStr).join(' ')}`;
-                    panel.appendChild(row);
-                    panel.scrollTop = panel.scrollHeight;
-                }
-
-                // Receive forwarded logs (works for both same-origin and cross-origin if the app posts messages)
-                window.addEventListener('message', (ev) => {
-                    const d = ev.data;
-                    if (!d || d.__iframeConsole !== true) return;
-                    if (ev.source && frame.contentWindow && ev.source !== frame.contentWindow) return;
-                    append(d.type || 'log', Array.isArray(d.data) ? d.data : [d.data]);
-                });
-
-                // Try to hook same-origin iframe console automatically
-                function hookSameOrigin() {
-                    try {
-                        const cw = frame.contentWindow;
-                        if (!cw || !cw.console) return;
-                        ['log', 'info', 'warn', 'error', 'debug'].forEach((k) => {
-                            const orig = cw.console[k]?.bind(cw.console) || function () { };
-                            cw.console[k] = (...a) => {
-                                try { window.postMessage({ __iframeConsole: true, type: k, data: a }, '*'); } catch { }
-                                orig(...a);
-                            };
-                        });
-                        cw.addEventListener('error', (e) => {
-                            window.postMessage({ __iframeConsole: true, type: 'error', data: [e.message, `${e.filename}:${e.lineno}:${e.colno}`] }, '*');
-                        });
-                        cw.addEventListener('unhandledrejection', (e) => {
-                            window.postMessage({ __iframeConsole: true, type: 'error', data: ['Unhandled rejection:', e.reason] }, '*');
-                        });
-                    } catch {
-                        // Cross-origin: cannot hook; rely on shim inside the app (below).
-                    }
-                }
-
-                frame.addEventListener('load', () => {
-                    append('info', ['iframe loaded', frame.src]);
-                    hookSameOrigin();
-                });
             }
         });
     </script>
