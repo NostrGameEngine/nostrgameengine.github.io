@@ -1,6 +1,7 @@
-  @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap');
 
-  :root {
+:root {
     --dark-purple: #1B0629;
     --medium-purple: #3E1E68;
     --light-purple: #8357C5;
@@ -16,8 +17,41 @@
   }
 
 
+.read{
+    font-family: 'Yrsa', serif;
+    text-shadow: none;
+    text-align: left;
+    font-size: 1.3rem;
+    color:#cec9e0;
+}
+
+.read a,.read a:visited, .read a:hover{
+    color: #8970ee;    
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    text-shadow: none;
+        text-decoration: underline;
+}
+
+.read a:hover{
+    color: var(--accent-purple);
+}
 
 
+.read h1,.read h2,.read h3{
+    text-shadow: none;
+}
+
+.read h3{
+        font-size: 2rem;
+}
+.read h2{
+        font-size: 2.5rem;
+    }
+.read h1{
+        font-size: 3rem;
+    }
   /** ANIMS */
   @keyframes pulse-glow {
       0% {
