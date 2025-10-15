@@ -894,5 +894,6 @@ h3.left{
     header nav {
         margin:0;
         gap:0.6rem;
+        margin-top: 4rem;
     }
 }
